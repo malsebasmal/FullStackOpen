@@ -9,6 +9,9 @@ const App = () => {
   return (
     <div>
       <p>Hello word / Hola mundo!</p>
+      <p>
+        Today the date is {now.toDateString()}
+      </p>
       <ul>
         <li>
           <p>
