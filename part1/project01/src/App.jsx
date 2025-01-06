@@ -10,6 +10,14 @@ const Hello = (props) => {
   )
 }
 
+const Footer = () => {
+  return (
+    <div>
+      Greeting app created by <a href="https://github.com/mluukkai">muulakai</a>
+    </div>
+  )
+}
+
 const App = () => {
   const now = new Date()
   const name = "Peter"
@@ -21,6 +29,7 @@ const App = () => {
       <Hello name="Thomas" age={10 + 5}/>
       <Hello name={name} age={age}/>
       <p>Date: {now.toDateString()}</p>
+      <Footer />
     </div>
   )
 }
