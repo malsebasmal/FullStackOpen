@@ -22,6 +22,11 @@ const App = () => {
   const now = new Date()
   const name = "Peter"
   const age = 25
+  const friendsObj = [
+    { name: 'Peter', age: 4 },
+    { name: 'Maya', age: 10 },
+  ]
+  const friendsArr = [ 'Peter', 'Maya']
 
   return (
     <div>
@@ -30,6 +35,13 @@ const App = () => {
       <Hello name={name} age={age}/>
       <p>Date: {now.toDateString()}</p>
       <Footer />
+      <p>
+        {friendsObj[0].name} {friendsObj[0].age}
+      </p>
+      <p>
+        {friendsObj[1].name} {friendsObj[1].age}
+      </p>
+      <p>{friendsArr}</p>
     </div>
   )
 }
