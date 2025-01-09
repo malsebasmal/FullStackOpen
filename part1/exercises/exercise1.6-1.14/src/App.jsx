@@ -91,18 +91,20 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
   const [selected, setSelected] = useState(0)
-  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0));
-
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
+  
 
   const handleRandomAnecdote = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
   }
 
   const handleUpVote = () => {
-    const updatedVotes = [...votes];
-    updatedVotes[selected] += 1;
-    setVotes(updatedVotes);
+    const updatedVotes = [...votes]
+    updatedVotes[selected] += 1
+    setVotes(updatedVotes)
   }
+
+  const mostVotedIndex = votes.indexOf(Math.max(...votes))
 
   return (
     <div>
@@ -112,10 +114,15 @@ const App = () => {
       <Button text="Bad" onClick={() => {setBad(bad + 1)}}/>
 
       <Statistics data={[good, neutral, bad]}/> */}
+      
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <p>Has {votes[selected]} votes</p>
       <button onClick={handleRandomAnecdote}>Next anecdote</button>
       <button onClick={handleUpVote}>Vote</button>
+      <h2>Anecdote with most votes</h2>
+      <p>{anecdotes[mostVotedIndex]}</p>
+      <p>Has {votes[mostVotedIndex]} votes</p>
     </div>
   )
 }
