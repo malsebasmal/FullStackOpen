@@ -79,9 +79,7 @@ const App = () => {
   // const [good, setGood] = useState(0)
   // const [neutral, setNeutral] = useState(0)
   // const [bad, setBad] = useState(0)
-  const [selected, setSelected] = useState(0)
   
-
   const anecdotes = [
     'If it hurts, do it more often.',
     'Adding manpower to a late software project makes it later!',
@@ -92,9 +90,18 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
+  const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0));
+
 
   const handleRandomAnecdote = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
+  }
+
+  const handleUpVote = () => {
+    const updatedVotes = [...votes];
+    updatedVotes[selected] += 1;
+    setVotes(updatedVotes);
   }
 
   return (
@@ -106,7 +113,9 @@ const App = () => {
 
       <Statistics data={[good, neutral, bad]}/> */}
       <p>{anecdotes[selected]}</p>
+      <p>Has {votes[selected]} votes</p>
       <button onClick={handleRandomAnecdote}>Next anecdote</button>
+      <button onClick={handleUpVote}>Vote</button>
     </div>
   )
 }
