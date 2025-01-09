@@ -12,13 +12,36 @@ const Statistics = ({data}) => {
     return (
       <div>
         <h2>Statistics</h2>
-        <StatisticLine text="Good" value={good}/>
-        <StatisticLine text="Neutral" value={neutral}/>
-        <StatisticLine text="Bad" value={bad}/>
-        ----------------
-        <p>Total: {total}</p>
-        <p>Average: {average}</p>
-        <p>Positive: {isNaN(positive) ? "0" : positive}</p>
+        <table>
+          <tr>
+            <th>Votes</th>
+            <th>Others</th>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="Good" value={good}/>
+            </td>
+            <td>
+              <p>Total: {total}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="Neutral" value={neutral}/>
+            </td>
+            <td>
+              <p>Average: {average}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="Bad" value={bad}/>
+            </td>
+            <td>
+              <p>Positive: {isNaN(positive) ? "0" : positive}</p>
+            </td>
+          </tr>
+        </table>
       </div>
     )
   }
