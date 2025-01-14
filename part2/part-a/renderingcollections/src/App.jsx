@@ -1,16 +1,7 @@
 import './App.css'
-
-const Note = ({note}) => {
-  return (
-    <li>
-      {note.content}
-    </li>
-  )
-}
+import Note from './components/Notes'
 
 const App = ({notes}) => {
-  const listItem = notes.map(note => <li key={note.id}>{note.content}</li>)
-
   return (
     <div>
       <h1>Notes</h1>
