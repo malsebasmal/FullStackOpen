@@ -1,8 +1,8 @@
-const Note = () => {
+const Note = ({note}) => {
   return (
-    <div>
-      notes
-    </div>
+    <li>
+      {note.content}
+    </li>
   )
 }
 
