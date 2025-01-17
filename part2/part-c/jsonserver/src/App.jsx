@@ -1,6 +1,7 @@
 import './App.css'
 
-const App = () => {
+const App = ({notes}) => {
+  console.log(notes)
   return (
     <div>
       s
