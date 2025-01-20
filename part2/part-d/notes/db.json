@@ -8,7 +8,7 @@
     {
       "id": "2",
       "content": "Browser can execute only JavaScript",
-      "important": false
+      "important": true
     },
     {
       "id": "3",
@@ -18,12 +18,19 @@
     {
       "id": "1d4f",
       "content": "This note is created by axios",
-      "important": false
+      "important": true
     },
     {
       "id": "d163",
       "content": "Yara causa",
-      "important": true
+      "important": false
+    },
+    {
+      "id": "ddb8",
+      "content": [
+        ""
+      ],
+      "important": false
     }
   ]
 }
