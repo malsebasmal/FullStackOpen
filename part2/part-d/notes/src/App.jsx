@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './App.css'
-import axios from 'axios'
 import { useEffect } from 'react'
 import Note from './components/Note'
+import noteService from "./services/notes.js"
 
 const App = () => {
   const [notes, setNotes] = useState([])
@@ -10,8 +10,8 @@ const App = () => {
   const [showAll, setShowAll] = useState(true)
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/notes")
+    noteService
+      .getAll()
       .then(response => {
         setNotes(response.data)
       })
@@ -24,8 +24,8 @@ const App = () => {
       important: Math.random() > 0.5,
     } 
     
-    axios
-      .post("http://localhost:3001/notes", noteObject)
+    noteService
+      .create(noteObject)
       .then(response => {
         setNotes(notes.concat(response.data))
         setNewNote('')
@@ -36,21 +36,18 @@ const App = () => {
     setNewNote(event.target.value)
   }
 
-  const notesToShow = showAll
-    ? notes
-    : notes.filter(note => note.important)
+  const notesToShow = showAll ? notes : notes.filter(note => note.important)
 
-    const toggleImportanceOf = (id) => {
-      const url = `http://localhost:3001/notes/${id}`
-      const note = notes.find(note => note.id === id)
-      const changeNote = {...note, important: !note.important}
+  const toggleImportanceOf = (id) => {
+    const note = notes.find(note => note.id === id)
+    const changeNote = {...note, important: !note.important}
 
-      axios
-        .put(url, changeNote)
-        .then(response => {
-          setNotes(notes.map(note => note.id !== id ? note : response.data))
-        })
-    }
+    noteService
+      .update(id, changeNote)
+      .then(response => {
+        setNotes(notes.map(note => note.id !== id ? note : response.data))
+      })
+  }
     
   return (
     <div>
