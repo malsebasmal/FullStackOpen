@@ -1,16 +1,21 @@
 import { useState } from "react"
+import phonebook from "../services/phonebook"
 
-const PersonForm = ({addPerson, persons}) => {
+const PersonForm = ({addPerson}) => {
   const [newName, setNewName] = useState("")
   const [newNumber, setNewNumber] = useState("")
 
   const handleSubmit = (event) => {
     event.preventDefault()
-      const newNameObject = {name: newName, number: newNumber , id: persons.length + 1 }
-      addPerson(newNameObject)
-      setNewName("")
-      setNewNumber("")
-    }
+    const newPhoneNumber = {name: newName, number: newNumber}
+    phonebook
+      .create(newPhoneNumber)
+      .then(returnPhoneNumber => {
+        addPerson(returnPhoneNumber)
+        setNewName("")
+        setNewNumber("")
+      })
+  }
 
   const handleNameChange = (event) => setNewName(event.target.value)
   const handleNumberChange = (event) => setNewNumber(event.target.value)
