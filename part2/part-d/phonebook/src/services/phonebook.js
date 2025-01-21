@@ -11,13 +11,13 @@ const create = (newObject) => {
   return request.then(response => response.data)
 }
 
-const update = () => {
-  const request = axios.put(baseURL)
-
+const deleted = (id) => {
+  const request = axios.delete(`${baseURL}/${id}`)
+  return request.then(response => response.data)
 }
 
 export default {
   getAll,
   create,
-  update
+  deleted
 }

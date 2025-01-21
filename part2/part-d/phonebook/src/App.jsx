@@ -4,7 +4,6 @@ import Filter from './components/Filter.jsx'
 import Persons from './components/Persons.jsx'
 import PersonForm from './components/PersonForm.jsx'
 import { useEffect } from 'react'
-import axios from 'axios'
 import phonebook from './services/phonebook.js'
 
 const App = () => {
@@ -30,6 +29,16 @@ const App = () => {
       setPersons(persons.concat(newPerson));
     }
   }
+  
+  const deletedPerson = (id) => {
+    if(window.confirm("Are you sure you want to deleted this person?")) {
+      phonebook
+      .deleted(id)
+      .then(() => {
+        setPersons(persons.filter(person => person.id !== id))
+      })
+    }
+  }
 
   return (
     <div>
@@ -38,7 +47,7 @@ const App = () => {
       <h2>Add a new</h2>
       <PersonForm addPerson={addPerson}/>
       <h2>Numbers</h2>
-      <Persons searchPerson={searchPerson} persons={persons}/> 
+      <Persons searchPerson={searchPerson} persons={persons} deletedPerson={deletedPerson}/> 
     </div>
   )
 }
