@@ -33,8 +33,18 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: green;
+  font-style: italic;
 }
-
+.error {
+  color: red;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;
