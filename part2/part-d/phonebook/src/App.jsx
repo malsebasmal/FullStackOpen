@@ -5,10 +5,12 @@ import Persons from './components/Persons.jsx'
 import PersonForm from './components/PersonForm.jsx'
 import { useEffect } from 'react'
 import phonebook from './services/phonebook.js'
+import Notification from './components/Notification.jsx'
 
 const App = () => {
   const [persons, setPersons] = useState([])
-  const [searchPerson, setSearchPerson] = useState("");
+  const [searchPerson, setSearchPerson] = useState("")
+  const [message, setMessage] = useState("Adding a new person")
 
   useEffect(() => {
     phonebook
@@ -43,9 +45,10 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
+      <Notification message={message}/>
       <Filter searchPerson={searchPerson} handleFilterChange={handleFilterChange}/>
       <h2>Add a new</h2>
-      <PersonForm addPerson={addPerson} persons={persons}/>
+      <PersonForm addPerson={addPerson} setMessage={setMessage} persons={persons}/>
       <h2>Numbers</h2>
       <Persons searchPerson={searchPerson} persons={persons} deletedPerson={deletedPerson}/> 
     </div>

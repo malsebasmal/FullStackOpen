@@ -1,7 +1,7 @@
 import { useState } from "react"
 import phonebook from "../services/phonebook"
 
-const PersonForm = ({addPerson, persons}) => {
+const PersonForm = ({addPerson, persons, setMessage}) => {
   const [newName, setNewName] = useState("")
   const [newNumber, setNewNumber] = useState("")
 
@@ -25,9 +25,13 @@ const PersonForm = ({addPerson, persons}) => {
         .create(newPerson)
         .then(returnedPerson => {
           addPerson([...persons, returnedPerson])
+          setMessage(`Added ${newPerson.name}`)
           setNewName("")
           setNewNumber("")
         })
+        setTimeout(() => {
+          setMessage(null)
+        }, 2000)
     }
   }
 
