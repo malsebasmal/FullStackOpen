@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import Note from './components/Note'
 import noteService from "./services/notes.js"
 import Notification from './components/Notificaction.jsx'
+import Footer from './components/Footer.jsx'
 
 const App = () => {
   const [notes, setNotes] = useState([])
@@ -78,7 +79,8 @@ const App = () => {
         onChange={handleNoteChange}
       />
       <button type="submit">save</button>
-    </form> 
+    </form>
+    <Footer />
   </div>
   )
 }
