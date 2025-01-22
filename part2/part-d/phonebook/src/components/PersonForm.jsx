@@ -19,6 +19,9 @@ const PersonForm = ({addPerson, persons, setMessage}) => {
           setNewName("")
           setNewNumber("")
         })
+        .catch(err => {
+          setMessage(`Information of ${existingPerson.name} has already been removed from server`)
+        })
     } else {
       const newPerson = { name: newName, number: newNumber }
       phonebook

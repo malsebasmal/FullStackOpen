@@ -10,7 +10,7 @@ import Notification from './components/Notification.jsx'
 const App = () => {
   const [persons, setPersons] = useState([])
   const [searchPerson, setSearchPerson] = useState("")
-  const [message, setMessage] = useState("Adding a new person")
+  const [message, setMessage] = useState("Hello")
 
   useEffect(() => {
     phonebook
