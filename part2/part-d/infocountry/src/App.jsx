@@ -22,6 +22,7 @@ const InfoOneCountry = ({ country }) => {
         alt={`Flag of ${country.name.common}`}
         width="150"
       />
+      <h2>Weather in {country.name.common}</h2>
     </div>
   );
 };
