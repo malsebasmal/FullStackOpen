@@ -23,8 +23,17 @@ let persons = [
   }
 ]
 
+const reqLogger = (req, res, next) => {
+  console.log('Method:', req.method)
+  console.log('Path:  ', req.path)
+  console.log('Body:  ', req.body)
+  console.log('---')
+  next()
+}
+
 const app = e()
 const PORT = 3001
+app.use(reqLogger)
 app.use(e.json())
 
 app.get("/persons", (req, res) => {
