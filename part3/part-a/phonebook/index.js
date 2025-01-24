@@ -50,8 +50,35 @@ app.get("/persons/:id", (req, res) => {
 
 app.delete("/persons/:id", (req, res) => {
   persons = persons.filter(person => person.id !== Number(req.params.id))
-
   res.status(204).send(`delete person with id ${req.params.id}`)
+})
+
+const gId = () => {
+  const id = Math.random().toString(36).substring(2)
+  return id
+}
+
+app.post("/persons", (req, res) => {
+  const requiredFields = ["name", "number"]
+  const errors = []
+
+  requiredFields.forEach(field => {
+    if (!req.body[field]) {
+      errors.push(`El campo "${field}" es obligatorio.`);
+    }
+  });
+
+  if (errors.length > 0) {
+    return res.status(400).json({ errors })
+  }
+
+  const person = {
+    id: gId(),
+    ...req.body
+  }
+  persons = persons.concat(person)
+
+  res.status(201).json(person)
 })
 
 app.listen(PORT, () => {
