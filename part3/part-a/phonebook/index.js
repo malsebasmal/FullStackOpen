@@ -1,4 +1,5 @@
 import e from "express"
+import morgan from "morgan"
 
 let persons = [
   { 
@@ -23,18 +24,14 @@ let persons = [
   }
 ]
 
-const reqLogger = (req, res, next) => {
-  console.log('Method:', req.method)
-  console.log('Path:  ', req.path)
-  console.log('Body:  ', req.body)
-  console.log('---')
-  next()
-}
-
 const app = e()
 const PORT = 3001
-app.use(reqLogger)
 app.use(e.json())
+morgan.token("body", req => {
+  return JSON.stringify(req.body)
+})
+app.use(morgan(':method :url :body'))
+
 
 app.get("/persons", (req, res) => {
   res.status(200).json(persons)
@@ -63,7 +60,7 @@ app.delete("/persons/:id", (req, res) => {
 })
 
 const gId = () => {
-  const id = Math.random().toString(36).substring(2)
+  const id =  Math.floor(Math.random() * 1e16)
   return id
 }
 
