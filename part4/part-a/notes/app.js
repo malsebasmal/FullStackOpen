@@ -1,12 +1,12 @@
 import e from "express"
 import cors from "cors"
-import { MONGODB_URI } from "./utils/config"
-import { notesRouter } from "./controllers/notes"
-import { info, errors } from "./utils/logger"
+import { MONGODB_URI } from "./utils/config.js"
+import { notesRouter } from "./controllers/notes.js"
+import { info, errors } from "./utils/logger.js"
 import mongoose from "mongoose"
-import { unknownEndpoint, requestLogger, errorHandler } from "./utils/middleware"
+import { unknownEndpoint, requestLogger, errorHandler } from "./utils/middleware.js"
 
-const app = e()
+export const app = e()
 
 mongoose.set('strictQuery', false)
 
@@ -29,5 +29,3 @@ app.use('/api/notes', notesRouter)
 
 app.use(unknownEndpoint)
 app.use(errorHandler)
-
-module.exports = app

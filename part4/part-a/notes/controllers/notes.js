@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { Note } from '../models/note'
+import { Note } from '../models/note.js'
 
 export const notesRouter = Router()
 
